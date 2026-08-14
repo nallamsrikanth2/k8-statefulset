@@ -19,4 +19,4 @@ spec:
     spec:
       containers:
       - name: backend
-        image: devopsrikanth/backend:{[ .Values.Deployment.imageversion ]}
+        image: devopsrikanth/backend:{{ .Values.Deployment.imageversion }}
