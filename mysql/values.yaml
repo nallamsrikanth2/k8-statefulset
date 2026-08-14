@@ -1,0 +1,7 @@
+Deployment:
+  imageversion: v1:0
+  replicas: 2
+  rootPassword: "ExpenseApp@1"
+  user: "expense"
+  password: "ExpenseApp@1"
+  database: "transactions"

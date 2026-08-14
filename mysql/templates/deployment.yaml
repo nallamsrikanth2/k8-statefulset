@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind:  StatefulSet
+metadata:
+  name: mysql
+  labels:
+    name: mysql
+    project: expense
+spec:
+  replicas: {{ .Values.Deployment.replicas}}
+  serviceName: "mysql-headless"
+  selector:
+    matchLabels:
+      name: mysql
+      project: expense
+    template:
+      metadata:
+        labels:
+          name: mysql
+          project: expense
+      spec:
+        containers:
+        - name: mysql
+          image: devopsrikanth/mysql:{{ .Values.Deployment.imageversion}}
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "{{ .Values.Deployment.rootPassword }}"
+          - name: MYSQL_USER
+            value: "{{ .Values.Deployment.user }}"
+          - name: MYSQL_PASSWORD
+            value: "{{ .Values.Deployment.password }}"
+          - name: MYSQL_DATABASE
+            value: "{{ .Values.Deployment.database }}"
+          volumeMounts:
+          - name: mysql
+            mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "ebs-dynamic-sc"
+      resources:
+        requests:
+          storage: 3Gi        
+                
