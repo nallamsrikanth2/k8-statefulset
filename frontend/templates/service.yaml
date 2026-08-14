@@ -9,7 +9,7 @@ spec:
   type: LoadBalancer
   selector:
     name: frontend
-    project: expens
+    project: expense
   ports:
   - protocol: TCP
     port: 80
