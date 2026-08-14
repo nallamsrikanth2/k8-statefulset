@@ -12,27 +12,27 @@ spec:
     matchLabels:
       name: mysql
       project: expense
-    template:
-      metadata:
-        labels:
-          name: mysql
-          project: expense
-      spec:
-        containers:
+  template:
+    metadata:
+      labels:
+        name: mysql
+        project: expense
+    spec:
+      containers:
+      - name: mysql
+        image: devopsrikanth/mysql:{{ .Values.Deployment.imageversion}}
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "{{ .Values.Deployment.rootPassword }}"
+        - name: MYSQL_USER
+          value: "{{ .Values.Deployment.user }}"
+        - name: MYSQL_PASSWORD
+          value: "{{ .Values.Deployment.password }}"
+        - name: MYSQL_DATABASE
+          value: "{{ .Values.Deployment.database }}"
+        volumeMounts:
         - name: mysql
-          image: devopsrikanth/mysql:{{ .Values.Deployment.imageversion}}
-          env:
-          - name: MYSQL_ROOT_PASSWORD
-            value: "{{ .Values.Deployment.rootPassword }}"
-          - name: MYSQL_USER
-            value: "{{ .Values.Deployment.user }}"
-          - name: MYSQL_PASSWORD
-            value: "{{ .Values.Deployment.password }}"
-          - name: MYSQL_DATABASE
-            value: "{{ .Values.Deployment.database }}"
-          volumeMounts:
-          - name: mysql
-            mountPath: /var/lib/mysql
+          mountPath: /var/lib/mysql
   volumeClaimTemplates:
   - metadata:
       name: mysql
