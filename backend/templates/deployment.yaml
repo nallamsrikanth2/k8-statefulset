@@ -22,4 +22,4 @@ spec:
         image: devopsrikanth/backend:{{ .Values.Deployment.imageversion }}
         envFrom:
         - configMapRef:
-          name: backend
+            name: backend
