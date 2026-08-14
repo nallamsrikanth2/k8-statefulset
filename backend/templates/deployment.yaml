@@ -20,3 +20,6 @@ spec:
       containers:
       - name: backend
         image: devopsrikanth/backend:{{ .Values.Deployment.imageversion }}
+        envFrom:
+        - configMapRef:
+          name: backend

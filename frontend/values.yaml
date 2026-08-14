@@ -1,5 +1,4 @@
 Deployment:
   replicas: 2
-  imageversion: v1.0
 ConfigMap:
-  host: "mysql"
+  port: 8080
