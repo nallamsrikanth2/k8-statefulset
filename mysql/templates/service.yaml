@@ -24,7 +24,6 @@ metadata:
     name: mysql
     project: expense
 spec:
-  type:  LoadBalancer
   selector:
     name: mysql
     project: expense

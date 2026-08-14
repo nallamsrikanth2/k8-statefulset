@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    name: backend
+    project: expense
+spec:
+  replicas: {{ .Values.Deployment.replicas }}
+  selector:
+    matchLabels:
+      name: backend
+      project: expense
+  template:
+    metadata:
+      labels:
+        name: backend
+        project: expense
+    spec:
+      containers:
+      - name: backend
+        image: devopsrikanth/backend:{[ .Values.Deployment.imageversion ]}
